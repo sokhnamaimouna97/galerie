@@ -1,0 +1,67 @@
+<p></p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    <div style="border: none;" class="panel panel-primary">
+      <div class="panel panel-heading">Galerie</div>
+      <div class="panel-boby">
+        <form [formGroup]="searchForm" >
+
+          <div class="form-group">
+          <label for="motcle">Mot clé:</label>
+          <input type="text" formControlName="motcle" [ngClass]="{'is-valid':submitted && f.motcle.errors}" class="form-control" id="motcle" name="motcle">
+            <div *ngIf="submitted && f.motcle.errors">
+            <div *ngIf="f.motcle.errors.required">
+             <p>le mot clé est obligatoire</p>
+            </div>
+          </div>
+          </div>
+
+          <button (click)="onSearch()"  class="btn btn-primary">chercher</button>
+         </form>
+        </div>
+    </div>
+  </div>
+</div>
+  <div class="row" *ngIf="mode">
+    <div class="col-md-2" *ngFor="let item of items">
+     <div class="panel panel-primary">
+       <div class="panel-heading">Image</div>
+       <div class="panel-body">
+         <span> views: {{item.views}}</span>
+         <span> like: {{item.likes}}</span>
+         <img  (click)="detailimage(item)" src="{{item.previewURL}}" style="width: 100px;" height="100px">
+       </div>
+     </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!mode">
+    <div class="col-md-6 offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Détail image</div>
+      <div class="panel-body">
+        <div class="col-md-2"><img  src="{{photo.previewURL}}" style="width: 100px;" height="100px">
+        </div>
+        <div class="col-md-4"><span> views: {{photo.views}}</span>
+          <span> like: {{photo.likes}}</span>
+        </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  <div class="row">
+    <ul class="nav nav-pills">
+      <li *ngFor="let page of pages; let i=index">
+        {{i}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
